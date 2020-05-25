@@ -10,7 +10,7 @@ class RecentOrders extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal:20.0),
           child: Text(
             'Recent Orders',
             style: TextStyle(
@@ -21,7 +21,7 @@ class RecentOrders extends StatelessWidget {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.width / 3,
+          height: 120,
           
           child: ListView.builder(
             physics: BouncingScrollPhysics(),
@@ -40,7 +40,7 @@ class RecentOrders extends StatelessWidget {
   _buildRecentOrder(BuildContext context, Order order) {
     return Container(
       margin: EdgeInsets.all(15),
-      width: MediaQuery.of(context).size.width * .75,
+      width: 320,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Colors.white,
@@ -104,6 +104,7 @@ class RecentOrders extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(right: 15),
             child: FloatingActionButton(
+              heroTag: null,
               backgroundColor: Theme.of(context).primaryColor,
               child: Icon(Icons.add),
               onPressed: () {},

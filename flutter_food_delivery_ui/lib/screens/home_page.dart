@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_delivery_ui/screens/cart_screen.dart';
+import 'package:flutter_food_delivery_ui/widgets/nearby_restaurants.dart';
 import 'package:flutter_food_delivery_ui/widgets/recent_orders.dart';
 
 import '../data/data.dart';
@@ -34,7 +36,8 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 18,
               ),
             ),
-            onPressed: () {},
+            onPressed: () => Navigator.push(
+                context, MaterialPageRoute(builder: (_) => CartScreen())),
           ),
         ],
       ),
@@ -50,7 +53,6 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide(width: 0.8),
                 ),
-                
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide(
@@ -78,6 +80,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           RecentOrders(),
+          NearbyRestaurants(),
         ],
       ),
     );

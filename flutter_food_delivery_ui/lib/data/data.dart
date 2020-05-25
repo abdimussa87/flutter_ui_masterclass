@@ -88,6 +88,12 @@ final currentUser = User(
       restaurant: _restaurant1,
       quantity: 2,
     ),
+     Order(
+      date: 'Nov 10, 2019',
+      food: _steak,
+      restaurant: _restaurant2,
+      quantity: 1,
+    ),
     Order(
       date: 'Nov 2, 2019',
       food: _salmon,
