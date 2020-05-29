@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_budget_ui/data/data.dart';
+import 'package:flutter_budget_ui/models/category_model.dart';
 import 'package:flutter_budget_ui/widgets/bar_chart.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,21 +41,120 @@ class _HomePageState extends State<HomePage> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Container(
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black12, offset: Offset(0, 2))
-                    ],
-                  ),
-                  child: BarChart(weeklySpending),
-                );
+                if (index == 0) {
+                  return Container(
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(color: Colors.black12, offset: Offset(0, 2))
+                      ],
+                    ),
+                    child: BarChart(weeklySpending),
+                  );
+                } else {
+                  Category category = categories[index - 1];
+                  return _buildCategoryView(category);
+                }
               },
-              childCount: 1,
+              childCount: 1 + categories.length,
             ),
           )
+        ],
+      ),
+    );
+  }
+
+  _buildCategoryView(Category category) {
+    double totalUsedAmount = 0;
+    category.expenses.forEach((expense) {
+      totalUsedAmount += expense.cost;
+    });
+    
+    Color barColor = Colors.grey;
+    //checking percentage values for barColor
+    if (category.maxAmount - totalUsedAmount < category.maxAmount * 30 / 100) {
+      barColor = Colors.red;
+    } else if (category.maxAmount - totalUsedAmount <
+        category.maxAmount * 60 / 100) {
+      barColor = Colors.yellow;
+    } else if (category.maxAmount - totalUsedAmount <
+        category.maxAmount * 90 / 100) {
+      barColor = Colors.green;
+    }
+
+    return Container(
+      margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+      padding: EdgeInsets.all(20),
+      height: 120,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0, 2),
+            blurRadius: 6,
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                category.name,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                '\$${(category.maxAmount - totalUsedAmount).toStringAsFixed(2)}/ \$${category.maxAmount.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              double percent  = (category.maxAmount- totalUsedAmount) / category.maxAmount;
+              double barWidth = percent * constraints.maxWidth;
+              print("Percent = $percent bar width = $barWidth");
+              //useful checking to see if totalUsedAmount doesn't outweight maxAmount
+              if(barWidth<0){
+                barWidth = 0;
+              }
+              
+              return Stack(
+                children: <Widget>[
+                  Container(
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  Container(
+                    width: barWidth,
+                    height: 18,
+                    decoration: BoxDecoration(
+                      color: barColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ],
       ),
     );
