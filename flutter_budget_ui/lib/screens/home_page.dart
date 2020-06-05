@@ -80,7 +80,6 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
         padding: EdgeInsets.all(20),
-        height: 120,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -99,27 +98,31 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        category.name,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                                  child: Text(
-                    '\$${(category.maxAmount - totalUsedAmount).toStringAsFixed(2)}/ \$${category.maxAmount.toStringAsFixed(2)}',
+                  flex: 2,
+                  child: Text(
+                    category.name,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
-                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      '\$${(category.maxAmount - totalUsedAmount).toStringAsFixed(2)}/\$${category.maxAmount.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      // overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
               ],

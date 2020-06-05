@@ -22,18 +22,23 @@ class BarChart extends StatelessWidget {
                 fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.2),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.arrow_back),
                 iconSize: 30,
                 onPressed: () {},
               ),
-              Text(
-                'May 29, 2020 - June 04, 2020',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'May 29, 2020 - June 04, 2020',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ),
               IconButton(
@@ -50,40 +55,54 @@ class BarChart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Bar(
-                label: 'Su',
-                amountSpent: weeklySpending[0],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'Su',
+                  amountSpent: weeklySpending[0],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
-              Bar(
-                label: 'Mo',
-                amountSpent: weeklySpending[1],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'Mo',
+                  amountSpent: weeklySpending[1],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
-              Bar(
-                label: 'Tu',
-                amountSpent: weeklySpending[2],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'Tu',
+                  amountSpent: weeklySpending[2],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
-              Bar(
-                label: 'We',
-                amountSpent: weeklySpending[3],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'We',
+                  amountSpent: weeklySpending[3],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
-              Bar(
-                label: 'Th',
-                amountSpent: weeklySpending[4],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'Th',
+                  amountSpent: weeklySpending[4],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
-              Bar(
-                label: 'Fr',
-                amountSpent: weeklySpending[5],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'Fr',
+                  amountSpent: weeklySpending[5],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
-              Bar(
-                label: 'Sa',
-                amountSpent: weeklySpending[6],
-                mostExpensive: _mostExpensive,
+              Expanded(
+                child: Bar(
+                  label: 'Sa',
+                  amountSpent: weeklySpending[6],
+                  mostExpensive: _mostExpensive,
+                ),
               ),
             ],
           ),

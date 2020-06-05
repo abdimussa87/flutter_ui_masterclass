@@ -102,19 +102,29 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              '${expense.name}',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
+            Expanded(
+              child: Text(
+                '${expense.name}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-             Text(
-              '-\$${(expense.cost).toStringAsFixed(2)}',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.red,
-                fontWeight: FontWeight.w600,
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  '-\$${(expense.cost).toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.red,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
           ],
